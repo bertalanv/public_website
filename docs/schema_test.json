@@ -1,12 +1,38 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "financial_line_item",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "courier_transactions",
   "type": "object",
   "properties": {
-    "transaction_name": { "type": "string", "description": "The name of the transaction." },
-    "date":            { "type": "string", "format": "date" },
-    "amount":          { "type": "number", "description": "Transaction amount." }
+    "courier_id": {
+      "type": "string",
+      "description": "Unique identifier of the courier who handled all listed transactions."
+    },
+    "transactions": {
+      "type": "array",
+      "description": "List of financial line items for this courier.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "transaction_name": {
+            "type": "string",
+            "description": "Name or label of the transaction."
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Transaction date in YYYY-MM-DD format."
+          },
+          "amount": {
+            "type": "number",
+            "description": "Monetary value of the transaction."
+          }
+        },
+        "required": ["transaction_name", "date", "amount"],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
   },
-  "required": ["transaction_name", "date", "amount"],
+  "required": ["courier_id", "transactions"],
   "additionalProperties": false
 }
