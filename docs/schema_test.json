@@ -1,27 +1,21 @@
 {
-  "name": "financial_line_item",
-  "schema": {
-    "type": "object",
-    "properties": {
-      "transaction_name": {
-        "type": "string",
-        "description": "The name of the transaction."
-      },
-      "date": {
-        "type": "string",
-        "description": "The date of the transaction."
-      },
-      "amount": {
-        "type": "number",
-        "description": "The amount of money associated with the transaction."
-      }
-    },
-    "required": [
-      "transaction_name",
-      "date",
-      "amount"
-    ],
-    "additionalProperties": false
-  },
-  "strict": true
+    "name": "get_weather",
+    "description": "Fetches the weather in the given location",
+    "strict": true,
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "location": {
+                "type": "string",
+                "description": "The location to get the weather for"
+            },
+            "unit": {
+                "type": "string",
+                "description": "The unit to return the temperature in",
+                "enum": ["F", "C"]
+            }
+        },
+        "additionalProperties": false,
+        "required": ["location", "unit"]
+    }
 }
